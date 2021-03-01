@@ -13,13 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import it.objectmethod.tutorial.controllers.beans.LoggedUsers;
+import it.objectmethod.tutorial.controllers.service.JWTService;
 
 @Component
 public class AuthenticationFilter implements Filter {
 
+//	@Autowired
+//	private LoggedUsers loggedUsers;
+
 	@Autowired
-	private LoggedUsers loggedUsers;
+	private JWTService jwtSrv;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -37,8 +40,7 @@ public class AuthenticationFilter implements Filter {
 		} else {
 			String token = httpReq.getHeader("auth-token");
 			if (token != null) {
-				Long tokenNum = Long.parseLong(token);
-				if (loggedUsers.getLoggerUsersMap().containsKey(tokenNum)) {
+				if (jwtSrv.checkJWTToken(token)) {
 					System.out.println("TOKEN VALIDO RICHIESTA APPROVATA!");
 					chain.doFilter(request, response);
 				} else {
