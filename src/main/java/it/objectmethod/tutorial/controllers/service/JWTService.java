@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
@@ -47,7 +46,7 @@ public class JWTService {
 
 			System.out.println("Utente verificato! " + userId + " - " + userName);
 			valid = true;
-		} catch (JWTVerificationException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
