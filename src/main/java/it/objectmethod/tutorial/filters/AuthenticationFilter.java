@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import it.objectmethod.tutorial.controllers.service.JWTService;
 
 @Component
+@Order(3)
 public class AuthenticationFilter implements Filter {
 
 //	@Autowired
