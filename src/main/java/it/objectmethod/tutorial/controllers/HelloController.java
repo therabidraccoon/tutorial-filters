@@ -1,6 +1,7 @@
 package it.objectmethod.tutorial.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,8 +44,8 @@ public class HelloController {
 	}
 
 	@RequestMapping("/hello1")
-	public String getHelloPrimo() {
-		System.out.println("HELLO 1");
+	public String getHelloPrimo(@RequestHeader("auth-token") String authToken) {
+		System.out.println("HELLO 1 -" + authToken);
 		return "HELLO!!";
 	}
 
