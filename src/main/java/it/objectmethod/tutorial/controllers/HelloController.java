@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.objectmethod.tutorial.controllers.beans.LoggedUsers;
 import it.objectmethod.tutorial.controllers.beans.User;
 import it.objectmethod.tutorial.controllers.service.JWTService;
 
 @RestController
 public class HelloController {
 
-	@Autowired
-	private LoggedUsers loggedUsers;
+//	@Autowired
+//	private LoggedUsers loggedUsers;
 
 	@Autowired
 	private JWTService jwtSrv;
