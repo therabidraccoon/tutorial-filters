@@ -52,4 +52,26 @@ public class JWTService {
 
 		return valid;
 	}
+
+	public User getUserByToken(String jwtToken) {
+		User user = new User();
+		Algorithm alg = Algorithm.HMAC256(MY_SECRET_JWT_KEY);
+		try {
+			JWTVerifier ver = JWT.require(alg).build();
+			DecodedJWT decoded = ver.verify(jwtToken);
+
+			Long userId = decoded.getClaim("user_id").asLong();
+			String userName = decoded.getClaim("user_name").asString();
+
+			user.setId(userId);
+			user.setUsername(userName);
+
+			System.out.println("Utente verificato! " + userId + " - " + userName);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			user = null;
+		}
+		return user;
+	}
 }
